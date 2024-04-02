@@ -1,30 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-bool isCat(string s)
-{
-    unordered_set<char> st;
-
-    for (char c : s)
-    {
-        c = tolower(c);
-        st.insert(c);
-    }
-
-    string voice = "meow";
-    if(st.size() != 4) return false;
-    for (char c : voice)
-    {
-        
-        if (st.find(c) == st.end())
-        {
-            return false;
-        }
-    }
-
-    return true;
-}
-
 int main()
 {
 
@@ -36,11 +12,21 @@ int main()
         cin >> n;
         string s;
         cin >> s;
-
-        if (isCat(s))
-            cout << "YES" << endl;
+        string str = "meow";
+        for (int i = 0; i < n; i++)
+        {
+            s[i] = tolower(s[i]);
+        }
+        for (int i = 1; i < s.size(); i++)
+        {
+            while (s[i] == s[i - 1])
+                s.erase(i, 1);
+        }
+        if (s == str)
+            cout << "YES"<<endl;
         else
-            cout << "NO" << endl;
+            cout << "NO"<<endl;
+        
     }
     return 0;
 }

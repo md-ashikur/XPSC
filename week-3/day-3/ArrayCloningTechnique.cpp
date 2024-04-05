@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define ll long long int
+
 int main()
 {
 
@@ -10,38 +10,33 @@ int main()
     {
         int n;
         cin >> n;
-        vector<int> a(n);
+        vector<int> arr(n);
+        map<int, int> mp;
+        int mx = 0;
         for (int i = 0; i < n; i++)
         {
-            cin >> a[i];
-        }
-        map<int, int> mp;
-        for (int b : a)
-        {
-            mp[b]++;
-        }
-        int mx = INT_MIN;
-        for (auto m : mp)
-        {
-            mx = max(mx, m.second);
-        }
+            cin >> arr[i];
+            mp[arr[i]]++;
+            mx= max(mx, mp[arr[i]]);
 
-        int baki = n - mx;
-        int clone = 0;
-        int move = 0;
-        if (baki == 0)
-            cout << 0 << '\n';
-        else
-        {
-            while (baki != 0)
-            {
-                clone++;
-                baki -= mx;
-                move += mx;
-            }
-            int ans = clone + move;
-            cout << ans << '\n';
         }
+        int count = mx;
+        int result = 0;
+
+        while(count<n){
+            result++;
+            int x = n-count;
+            if(x>count){
+                result+=count;
+                count += count;
+            }
+            else{
+                result+=x;
+                count += x;
+            }
+        }
+        cout<<result<<endl;
+       
     }
     return 0;
 }

@@ -2,31 +2,18 @@
 using namespace std;
 
 
-bool isPalindrome(int ai, vector<int> v)
-{
-    for (int i = 0; i < v.size(); i++)
-    {
-        if (v[i] == ai)
-        {
-            v.erase(v.begin() + i);
-            i--;
-        }
-    }
-
-    
-    int i = 0, j = v.size() - 1;
-    while (i < j)
-    {
-        if (v[i] != v[j])
-        {
-           return false;
-           
+int kalin(vector<int> &v){
+    int i=0, j=v.size()-1;
+    int ans=1;
+    while(i<j){
+        if(v[i]!=v[j]){
+            ans=0;
+            break;
         }
         i++;
         j--;
-  
     }
-    return true;
+    return ans;
 }
 
 int main()
@@ -39,37 +26,49 @@ int main()
     {
         int n;
         cin >> n;
-        vector<int> v(n);
+        vector<int> arr(n);
         for (int i = 0; i < n; i++)
        {
-         cin >> v[i];
+         cin >> arr[i];
        }
 
-        long long int i = 0, j = n - 1;
-        long long int ai, aj;
-        bool ok = true;
+        int i = 0, j = n - 1;
+        int ai, aj;
+        int ans= -1;
         while (i < j)
         {
-            if (v[i] != v[j])
+            if (arr[i] != arr[j])
             {
-                ai = v[i];
-                aj = v[j];
-                ok = false;
+                ans = 1;
+                ai = arr[i];
+                aj = arr[j];
+               
                 break;
             }
             i++;
             j--;
         }
 
-        if (ok)
+        if (ans==-1)
         {
            cout << "YES" << endl;
         }
         else
         {
-            bool ans1 = isPalindrome(ai, v);
-            bool ans2 = isPalindrome(aj, v);
+           vector<int> v1, v2;
+           for(int i = 0; i < n; i++){
+            if(arr[i] == ai)
+            continue;
+            v1.push_back(arr[i]);
+           }
+           for(int i = 0; i < n; i++){
+            if(arr[i] == aj)
+            continue;
+            v2.push_back(arr[i]);
+           }
 
+           int ans1 = kalin(v1);
+           int ans2 = kalin(v2);
             if (ans1 || ans2)
                 cout << "YES" << endl;
             else

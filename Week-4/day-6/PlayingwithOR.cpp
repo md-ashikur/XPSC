@@ -14,12 +14,9 @@ int main()
 
         for (int i = 1; i <= k; i++)
         {
-
             cin >> arr[i];
             if (arr[i] % 2)
-            {
                 pref[i] = 1;
-            }
             pref[i] += pref[i - 1];
         }
 

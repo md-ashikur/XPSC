@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define ll long long int
+
 int main()
 {
 
@@ -15,6 +15,19 @@ int main()
         {
             cin >> v[i];
         }
+        set<int> st;
+        bool ans = false;
+        int k=1;
+        for(int i = n-1; i >= 0; i--){
+            st.insert(v[i]);
+           if(st.size() < k ){
+            cout<< n -k+1 << endl;
+            ans = true;
+            break;
+           }
+           k++;
+        }
+        if(!ans) cout<< "0" << endl;
     }
 
     return 0;

@@ -11,28 +11,14 @@ int main()
         int n;
         cin >> n;
         vector<int> v(n);
-
-        for (int i = 0; i < n; i++)
-        {
-            cin >> v[i];
-        }
-
         int x = 0;
         for (int i = 0; i < n; i++)
         {
-            x^=v[i];
-        }
-        for (int i = 0; i < n; i++)
-        {
-            v[i]^=x;
-        }
-         int y = 0;
-        for (int i = 0; i < n; i++)
-        {
-            y^=v[i];
+            cin >> v[i];
+            x ^= v[i];
         }
 
-        if (y == 0)
+        if (n & 1 || !x)
             cout << x << endl;
         else
             cout << -1 << endl;

@@ -1,30 +1,31 @@
 #include <bits/stdc++.h>
 using namespace std;
+
 int main()
 {
     int t;
     cin >> t;
     while (t--)
     {
-        int n[5];
-        for (int i = 0; i < 5; i++)
-        {
+        int n, k;
+        cin >> n >> k;
 
-            cin >> n[i];
-        }
-        int count = 0;
-        for (int i = 0; i < 5; i++)
+        int arr[400005];
+
+        for (int i = 1; i <= k; i++)
         {
-            if (n[i] == 1)
-                count++;
+            cin >> arr[i];
         }
 
-        if (count >= 4)
+        sort(arr + 1, arr + k + 1);
+        int s = n, j = k;
+        while (s > 0)
         {
-            cout << "YES" << endl;
+            s -= (n - arr[j]);
+            j--;
         }
-        else
-            cout << "NO" << endl;
+        int ans = k - j - 1;
+        cout << ans << endl;
     }
 
     return 0;
